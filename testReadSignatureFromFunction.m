@@ -1,5 +1,5 @@
 % Load test functions from file
-tree = mtree("testfunction.m");
+tree = mtree("testfunction.m", "-file");
 root = tree.root;
 
 % Test1: Empty function
