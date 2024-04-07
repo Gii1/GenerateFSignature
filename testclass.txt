@@ -1,0 +1,17 @@
+% empty class
+classdef class1
+
+end
+
+% class with 2 functions
+classdef class2
+    methods
+        function function1()
+
+        end
+
+        function function2()
+
+        end
+    end
+end
