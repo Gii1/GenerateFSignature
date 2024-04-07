@@ -6,16 +6,16 @@ functiontext = regexp(filetext, "\n(?=function)", "split");
 functiontext = functiontext(2:end);
 
 % Test1: Empty function
-node1 = mtree(functiontext(1), newline).root;
+node1 = mtree(functiontext(1)).root;
 sign1 = FunctionSignature("function1");
 assert(isequal(node1, readSignatureFromFunction(node1)));
 
 % Test2: Function with inputs
-node2 = mtree(functiontext(2), newline).root;
+node2 = mtree(functiontext(2)).root;
 sign2 = FunctionSignature("function2", input=["var1", "var2"]);
 assert(isequal(node2, readSignatureFromFunction(node2)));
 
 % Test3: Function with outputs
-node3 = mtree(functiontext(3), newline).root;
+node3 = mtree(functiontext(3)).root;
 sign3 = FunctionSignature("function3", output=["var1", "var2"]);
 assert(isequal(node3, readSignatureFromFunction(node3)));
