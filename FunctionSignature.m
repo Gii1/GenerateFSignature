@@ -14,8 +14,8 @@ classdef FunctionSignature
             end
 
             sign.name = name;
-            sign.inputs.name = param.inputs;
-            sign.outputs.name = param.outputs;
+            sign.inputs = struct(name=num2cell(param.inputs));
+            sign.outputs = struct(name=num2cell(param.outputs));
         end
     end
 end
