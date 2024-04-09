@@ -1,6 +1,6 @@
 % Load test functions from file
 filetext = string(fileread("testfunction.txt"));
-% split text into seperate function, 
+% split text into seperate function 
 functiontext = regexp(filetext, "\n(?=function)", "split");
 % first entry are just comments, can be excluded
 functiontext = functiontext(2:end);

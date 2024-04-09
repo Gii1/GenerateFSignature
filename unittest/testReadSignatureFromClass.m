@@ -1,3 +1,5 @@
+import gfs.*
+
 % Load test functions from file
 filetext = string(fileread("testclass.txt"));
 % split text into seperate function, 
