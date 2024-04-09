@@ -13,6 +13,6 @@ assert(isempty(readSignatureFromClass(node1)));
 
 % Test 2: Class with 2 functions
 node2 = mtree(classtext(2)).root;
-sign2(1) = FunctionSignature("function1");
-sign2(2) = FunctionSignature("function2");
+sign2(1) = FunctionSignature("class2.function1");
+sign2(2) = FunctionSignature("class2.function2");
 assert(all(isequal(sign2, readSignatureFromClass(node2))));
