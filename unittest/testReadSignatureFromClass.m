@@ -15,14 +15,14 @@ function setupOnce(testCase)
     testCase.TestData.classtext = classtext;
 end
 
+% Input is class without any functions
 function testEmptyClass(testCase)
-    % Test 1: Empty class
     node1 = mtree(testCase.TestData.classtext(1)).root;
     testCase.verifyEmpty(readSignatureFromClass(node1));
 end
 
+% Input is class with 2 functions
 function testClassWithFunctions(testCase)
-    % Test 2: Class with 2 functions
     node2 = mtree(testCase.TestData.classtext(2)).root;
     sign2(1) = FunctionSignature("class2.function1");
     sign2(2) = FunctionSignature("class2.function2");
