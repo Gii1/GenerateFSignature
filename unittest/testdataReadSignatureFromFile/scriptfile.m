@@ -1,0 +1,2 @@
+% script file
+disp("test");
