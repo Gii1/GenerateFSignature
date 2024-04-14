@@ -1,0 +1,35 @@
+% empty function
+    "emptyfunction": {}
+
+% function with inputs
+    "functionwithinputs":
+    {
+        "inputs":
+        [
+            {"name":"var1", "kind":"required"},
+            {"name":"var2", "kind":"required"}
+        ]
+    }
+
+% function with outputs
+    "functionwithoutputs":
+    {
+        "outputs":
+        [
+            {"name":"var1"},
+            {"name":"var2"}
+        ]
+    }
+
+% function with both input and output
+    "functionwithinputandoutput":
+    {
+        "inputs":
+        [
+            {"name":"var1", "kind":"required"}
+        ],
+        "outputs":
+        [
+            {"name":"var2"}
+        ]
+    }
