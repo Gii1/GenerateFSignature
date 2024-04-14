@@ -9,30 +9,29 @@ function setupOnce(testCase)
     % Load test functions from file
     filetext = string(fileread("testdataReadSignatureFromFunction.txt"));
     % split text into seperate function 
-    functiontext = regexp(filetext, "\n(?=function)", "split");
-    % first entry are just comments, can be excluded
-    functiontext = functiontext(2:end);    
+    functiontext = regexp(filetext, "%.*?\n", "split");
+    % remove first entry which is empty
+    functiontext = functiontext(2:end);
     testCase.TestData.functiontext = functiontext;
 end
 
 % Input is a function without input or output arguments
 function testEmptyFunction(testCase)
-    node1 = mtree(testCase.TestData.functiontext(1)).root;
-    sign1 = FunctionSignature("function1");
-    testCase.verifyEqual(readSignatureFromFunction(node1), sign1);
+    functionnode = mtree(testCase.TestData.functiontext(1)).root;
+    signature = FunctionSignature("function1");
+    testCase.verifyEqual(readSignatureFromFunction(functionnode), signature);
 end
 
 % Input is a function with 2 input arguments
 function testFunctionWithInput(testCase)
-    node2 = mtree(testCase.TestData.functiontext(2)).root;
-    sign2 = FunctionSignature("function2", input=["var1", "var2"]);
-    testCase.verifyEqual(readSignatureFromFunction(node2), sign2);
+    functionnode = mtree(testCase.TestData.functiontext(2)).root;
+    signature = FunctionSignature("function2", input=["var1", "var2"]);
+    testCase.verifyEqual(readSignatureFromFunction(functionnode), signature);
 end
 
 % Input is a function with 2 output arguments
 function testFunctionWithOutputs(testCase)
-    % Test3: Function with outputs
-    node3 = mtree(testCase.TestData.functiontext(3)).root;
-    sign3 = FunctionSignature("function3", output=["var1", "var2"]);
-    testCase.verifyEqual(readSignatureFromFunction(node3), sign3);
+    functionnode = mtree(testCase.TestData.functiontext(3)).root;
+    signature = FunctionSignature("function3", output=["var1", "var2"]);
+    testCase.verifyEqual(readSignatureFromFunction(functionnode), signature);
 end
