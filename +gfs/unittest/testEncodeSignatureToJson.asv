@@ -22,17 +22,7 @@ function testEmptyFunction(testCase)
     verifyEqual(testCase, encodeSignatureToJson(signature), testCase.TestData.jsontext(1));
 end
 
-function testFunctionWithInputs(testCase)
+function testFunctionWithInputs()
     signature = FunctionSignature("functionwithinputs", inputs=["var1", "var2"]);
-    verifyEqual(testCase, encodeSignatureToJson(signature), testCase.TestData.jsontext(2));
-end
-
-function testFunctionWithOutputs(testCase)
-    signature = FunctionSignature("functionwithoutputs", outputs=["var1", "var2"]);
-    verifyEqual(testCase, encodeSignatureToJson(signature), testCase.TestData.jsontext(3));
-end
-
-function testFunctionWithInputAndOutput(testCase)
-    signature = FunctionSignature("functionwithinputandoutput", inputs="var1", outputs="var2");
-    verifyEqual(testCase, encodeSignatureToJson(signature), testCase.TestData.jsontext(4));
+    verifyEqual(testCase, encodeSignatureToJson(signature), )
 end

@@ -1,0 +1,5 @@
+% signature with 2 empty functions
+{
+    "function1": {},
+    "function2": {}
+}

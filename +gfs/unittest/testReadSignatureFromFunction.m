@@ -4,7 +4,7 @@ end
 
 function setupOnce(testCase)
     % Add parent to path
-    testCase.applyFixture(matlab.unittest.fixtures.PathFixture("../"))
+    testCase.applyFixture(matlab.unittest.fixtures.PathFixture("../../"))
 
     % Load test functions from file
     filetext = string(fileread("testdataReadSignatureFromFunction.txt"));
@@ -18,20 +18,20 @@ end
 % Input is a function without input or output arguments
 function testEmptyFunction(testCase)
     functionnode = mtree(testCase.TestData.functiontext(1)).root;
-    signature = FunctionSignature("function1");
-    testCase.verifyEqual(readSignatureFromFunction(functionnode), signature);
+    signature = gfs.FunctionSignature("function1");
+    testCase.verifyEqual(gfs.readSignatureFromFunction(functionnode), signature);
 end
 
 % Input is a function with 2 input arguments
 function testFunctionWithInput(testCase)
     functionnode = mtree(testCase.TestData.functiontext(2)).root;
-    signature = FunctionSignature("function2", input=["var1", "var2"]);
-    testCase.verifyEqual(readSignatureFromFunction(functionnode), signature);
+    signature = gfs.FunctionSignature("function2", input=["var1", "var2"]);
+    testCase.verifyEqual(gfs.readSignatureFromFunction(functionnode), signature);
 end
 
 % Input is a function with 2 output arguments
 function testFunctionWithOutputs(testCase)
     functionnode = mtree(testCase.TestData.functiontext(3)).root;
-    signature = FunctionSignature("function3", output=["var1", "var2"]);
-    testCase.verifyEqual(readSignatureFromFunction(functionnode), signature);
+    signature = gfs.FunctionSignature("function3", output=["var1", "var2"]);
+    testCase.verifyEqual(gfs.readSignatureFromFunction(functionnode), signature);
 end
