@@ -6,6 +6,8 @@ function sign = readSignatureFromFile(filename)
             sign = gfs.readSignatureFromFunction(node);
         case "CLASSDEF"
             sign = gfs.readSignatureFromClass(node);
+        case "ERR"
+            MException("gfs:invalidfile", "The mfile could not be parsed.").throw();
         otherwise
             sign = [];
     end

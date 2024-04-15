@@ -23,3 +23,8 @@ function testClassFile(testCase)
     signature = gfs.FunctionSignature("classfile.classfunction");
     testCase.verifyEqual(gfs.readSignatureFromFile("testdataReadSignatureFromFile/classfile.m"), signature);
 end
+
+% Input is path to an invalid m-file
+function testInvalidFile(testCase)
+    testCase.verifyError(@() gfs.readSignatureFromFile("testdataReadSignatureFromFile/invalidfile.m"), "gfs:invalidfile");
+end
