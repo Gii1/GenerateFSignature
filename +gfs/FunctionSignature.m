@@ -8,7 +8,7 @@ classdef FunctionSignature
     methods
         function sign = FunctionSignature(name, param)
             arguments
-                name (1, 1) string;
+                name (1, 1) string = "";
                 param.inputs = [];
                 param.outputs = [];
             end
