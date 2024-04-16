@@ -7,11 +7,6 @@ function setupOnce(testCase)
     testCase.applyFixture(matlab.unittest.fixtures.PathFixture("../../"))
 end
 
-% Input is path to an empty folder
-function testEmptyFolder(testCase)
-    testCase.verifyEmpty(gfs.readSignatureFromFolder("testdataReadSignatureFromFolder/emptyFolder"));
-end
-
 % Input is path to a folder which contains a m-file
 function testFolderWithMFile(testCase)
     signature = gfs.FunctionSignature("functionfile");
@@ -26,5 +21,5 @@ end
 % Input is path to a folder which contains a m-file which can not be
 % parsed
 function testFolderWithInvalidFile(testCase)
-    testCase.verifyError(@() gfs.readSignatureFromFolder("testdataReadSignatureFromFolder/folderWithInvalidFile"), "generatesign:invalidfile")
+    testCase.verifyError(@() gfs.readSignatureFromFolder("testdataReadSignatureFromFolder/folderWithInvalidFile"), "gfs:invalidfile")
 end

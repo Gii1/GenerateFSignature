@@ -1,3 +1,17 @@
 function sign = readSignatureFromFolder(foldername)
-    sign = [];
+    filenames = string({dir(fullfile(foldername, "*.m")).name});
+    sign = gfs.FunctionSignature.empty;
+    isinvalid = false(size(filenames));
+
+    for i = 1:length(filenames)
+        try
+            sign = [sign gfs.readSignatureFromFile(fullfile(foldername, filenames(i)))]; %#ok<AGROW>
+        catch ME
+            isinvalid(i) = strcmp(ME.identifier, "gfs:invalidfile");
+        end
+    end
+
+    if any(isinvalid)
+        MException("gfs:invalidfile", "The following files could not be parsed: %s", join(filenames(isinvalid), ", ")).throw();
+    end
 end
