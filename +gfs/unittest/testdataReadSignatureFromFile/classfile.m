@@ -1,7 +1,7 @@
 % class file
 classdef classfile
     methods
-        function classfunction()
+        function classfunction(var1)
             
         end
     end

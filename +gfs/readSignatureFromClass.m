@@ -1,5 +1,6 @@
 function sign = readSignatureFromClass(node)
     % convert a mtree class node into an array of FunctionSignature object
+    
     sign = gfs.FunctionSignature.empty;
     name = node.Cexpr.stringval;
 

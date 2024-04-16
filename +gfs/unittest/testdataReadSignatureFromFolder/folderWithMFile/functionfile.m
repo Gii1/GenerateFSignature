@@ -1,3 +1,3 @@
-function functionfile
+function functionfile(var1)
 
 end

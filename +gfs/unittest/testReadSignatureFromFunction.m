@@ -18,8 +18,7 @@ end
 % Input is a function without input or output arguments
 function testEmptyFunction(testCase)
     functionnode = mtree(testCase.TestData.functiontext(1)).root;
-    signature = gfs.FunctionSignature("function1");
-    testCase.verifyEqual(gfs.readSignatureFromFunction(functionnode), signature);
+    testCase.verifyEmpty(gfs.readSignatureFromFunction(functionnode));
 end
 
 % Input is a function with 2 input arguments

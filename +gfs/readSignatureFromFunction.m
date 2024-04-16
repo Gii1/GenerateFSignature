@@ -17,5 +17,9 @@ function sign = readSignatureFromFunction(node)
         outputnode = outputnode.Next;
     end
 
-    sign = gfs.FunctionSignature(name, inputs=inputs, outputs=outputs);
+    if isempty(inputs) && isempty(outputs)
+        sign = gfs.FunctionSignature.empty;
+    else
+        sign = gfs.FunctionSignature(name, inputs=inputs, outputs=outputs);
+    end
 end

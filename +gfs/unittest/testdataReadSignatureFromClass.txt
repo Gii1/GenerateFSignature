@@ -6,11 +6,11 @@ end
 % class with 2 functions
 classdef class2
     methods
-        function function1()
+        function function1(var1)
 
         end
 
-        function function2()
+        function function2(var1)
 
         end
     end

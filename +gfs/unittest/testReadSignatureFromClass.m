@@ -23,7 +23,7 @@ end
 % Input is class with 2 functions
 function testClassWithFunctions(testCase)
     classnode = mtree(testCase.TestData.classtext(2)).root;
-    signature(1) = gfs.FunctionSignature("class2.function1");
-    signature(2) = gfs.FunctionSignature("class2.function2");
+    signature(1) = gfs.FunctionSignature("class2.function1", inputs=["var1"]);
+    signature(2) = gfs.FunctionSignature("class2.function2", inputs=["var1"]);
     testCase.verifyEqual(gfs.readSignatureFromClass(classnode), signature);
 end

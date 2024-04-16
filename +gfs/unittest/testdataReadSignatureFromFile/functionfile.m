@@ -1,4 +1,4 @@
 % function file
-function functionfile
+function functionfile(var1)
 
 end
