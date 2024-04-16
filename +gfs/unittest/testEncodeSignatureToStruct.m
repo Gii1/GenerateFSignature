@@ -1,4 +1,4 @@
-function tests = testEncodeSignatureToJson()
+function tests = testEncodeSignatureToStruct()
     tests = functiontests(localfunctions);
 end
 
