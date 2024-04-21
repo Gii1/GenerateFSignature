@@ -1,0 +1,10 @@
+{
+    "functionwithoutputs":
+    {
+        "outputs":
+        [
+            {"name":"var1", "type":""},
+            {"name":"var2", "type":""}
+        ]
+    }
+}
