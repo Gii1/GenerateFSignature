@@ -24,5 +24,5 @@ function jsontext = encodeSignatureToJson(signature)
         filestruct.(s.name) = functionstruct;
     end
 
-    jsontext = jsonencode(filestruct);
+    jsontext = jsonencode(filestruct, PrettyPrint=true);
 end
