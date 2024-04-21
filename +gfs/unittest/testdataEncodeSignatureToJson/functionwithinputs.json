@@ -1,0 +1,10 @@
+{
+    "functionwithinputs":
+    {
+        "inputs":
+        [
+            {"name":"var1", "kind":"required", "type":""},
+            {"name":"var2", "kind":"required", "type":""}
+        ]
+    }
+}
