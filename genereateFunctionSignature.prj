@@ -1,7 +1,7 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="2601143605" file="C:\Users\Gii\Dropbox\Programmieren\MATLAB\GenerateFSignature\genereateFunctionSignature.prj" location="C:\Users\Gii\Dropbox\Programmieren\MATLAB\GenerateFSignature" name="genereateFunctionSignature" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="3013394561" file="C:\Users\Gii\Dropbox\Programmieren\MATLAB\GenerateFSignature\genereateFunctionSignature.prj" location="C:\Users\Gii\Dropbox\Programmieren\MATLAB\GenerateFSignature" name="genereateFunctionSignature" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>genereateFunctionSignature</param.appname>
-    <param.authnamewatermark>Gii1</param.authnamewatermark>
+    <param.authnamewatermark>Guido Hiller</param.authnamewatermark>
     <param.email />
     <param.company />
     <param.summary>Utility to generate a function signature file for a MATLAB project.</param.summary>
@@ -51,7 +51,6 @@ resources</param.exclude.filters>
     <param.additional.sw.mac.url />
     <param.additional.sw.linux.url />
     <unset>
-      <param.authnamewatermark />
       <param.email />
       <param.company />
       <param.screenshot />
