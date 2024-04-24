@@ -2,11 +2,6 @@ function tests = testReadSignatureFromFolder()
     tests = functiontests(localfunctions);
 end
 
-function setupOnce(testCase)
-    % Add parent to path
-    testCase.applyFixture(matlab.unittest.fixtures.PathFixture("../../"))
-end
-
 % Input is path to a folder which contains a m-file
 function testFolderWithMFile(testCase)
     signature = gfs.FunctionSignature("functionfile", inputs=["var1"]);

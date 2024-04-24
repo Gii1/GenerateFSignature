@@ -2,11 +2,6 @@ function tests = testEncodeSignatureToJson()
     tests = functiontests(localfunctions);
 end
 
-function setupOnce(testCase)
-    % Add parent to path
-    testCase.applyFixture(matlab.unittest.fixtures.PathFixture("../../"))
-end
-
 % test signature with 2 input variables
 function testFunctionWithInputs(testCase)
     signature = gfs.FunctionSignature("functionwithinputs", inputs=["var1", "var2"]);

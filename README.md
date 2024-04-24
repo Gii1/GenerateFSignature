@@ -6,7 +6,7 @@ Utility to generate a function signature file for a MATLAB project.
 
 Download and execute the MATLAB toolbox file found in the latest release.
 
-Alternatively, clone this repository and add the root folder to the MATLAB path.
+Alternatively, clone this repository and add the toolbox folder to the MATLAB path.
 
 ## Usage
 

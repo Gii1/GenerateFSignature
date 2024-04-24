@@ -3,9 +3,6 @@ function tests = testReadSignatureFromClass
 end
 
 function setupOnce(testCase)
-    % Add parent to path
-    testCase.applyFixture(matlab.unittest.fixtures.PathFixture("../../"))
-
     % Load test functions from file
     filetext = string(fileread("testdataReadSignatureFromClass.txt"));
     % split text into seperate function, 

@@ -28,7 +28,10 @@ resources</param.exclude.filters>
     <param.registered.apps />
     <param.docs />
     <param.getting.started.guide />
-    <param.matlabpath.excludes />
+    <param.matlabpath.excludes>
+      <item>/</item>
+      <item>/toolbox/internal</item>
+    </param.matlabpath.excludes>
     <param.javaclasspath.excludes />
     <param.exported.on.package>false</param.exported.on.package>
     <param.required.addons />
@@ -65,7 +68,6 @@ resources</param.exclude.filters>
       <param.registered.apps />
       <param.docs />
       <param.getting.started.guide />
-      <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
       <param.exported.on.package />
       <param.required.addons />
@@ -87,9 +89,8 @@ resources</param.exclude.filters>
       <file>${PROJECT_ROOT}</file>
     </fileset.rootdir>
     <fileset.rootfiles>
-      <file>${PROJECT_ROOT}\+gfs</file>
-      <file>${PROJECT_ROOT}\generateFunctionSignature.m</file>
       <file>${PROJECT_ROOT}\README.md</file>
+      <file>${PROJECT_ROOT}\toolbox</file>
     </fileset.rootfiles>
     <fileset.depfun.included />
     <fileset.depfun.excluded />

@@ -2,11 +2,6 @@ function tests = testReadSignatureFromFile()
     tests = functiontests(localfunctions);
 end
 
-function setupOnce(testCase)
-    % Add parent to path
-    testCase.applyFixture(matlab.unittest.fixtures.PathFixture("../../"))
-end
-
 % Input is path to a script file
 function testScriptFile(testCase)
     testCase.verifyEmpty(gfs.readSignatureFromFile("testdataReadSignatureFromFile/scriptfile.m"));
