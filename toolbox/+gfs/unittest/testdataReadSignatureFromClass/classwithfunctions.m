@@ -1,10 +1,5 @@
-% empty class
-classdef class1
-
-end
-
 % class with 2 functions
-classdef class2
+classdef classwithfunctions
     methods
         function function1(var1)
 

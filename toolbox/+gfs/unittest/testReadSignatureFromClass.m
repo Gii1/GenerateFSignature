@@ -13,14 +13,14 @@ end
 
 % Input is class without any functions
 function testEmptyClass(testCase)
-    classnode = mtree(testCase.TestData.classtext(1)).root;
+    classnode = mtree("testdataReadSignatureFromClass/emptyclass.m", "-file").root;
     testCase.verifyEmpty(gfs.readSignatureFromClass(classnode));
 end
 
 % Input is class with 2 functions
 function testClassWithFunctions(testCase)
-    classnode = mtree(testCase.TestData.classtext(2)).root;
-    signature(1) = gfs.FunctionSignature("class2.function1", inputs=["var1"]);
-    signature(2) = gfs.FunctionSignature("class2.function2", inputs=["var1"]);
+    classnode = mtree("testdataReadSignatureFromClass/classwithfunctions.m", "-file").root;
+    signature(1) = gfs.FunctionSignature("classwithfunctions.function1", inputs=["var1"]);
+    signature(2) = gfs.FunctionSignature("classwithfunctions.function2", inputs=["var1"]);
     testCase.verifyEqual(gfs.readSignatureFromClass(classnode), signature);
 end
