@@ -1,11 +1,13 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration file="C:\Users\Gii\Dropbox\Programmieren\MATLAB\GenerateFSignature\genereateFunctionSignature.prj" location="C:\Users\Gii\Dropbox\Programmieren\MATLAB\GenerateFSignature" name="genereateFunctionSignature" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="2601143605" file="C:\Users\Gii\Dropbox\Programmieren\MATLAB\GenerateFSignature\genereateFunctionSignature.prj" location="C:\Users\Gii\Dropbox\Programmieren\MATLAB\GenerateFSignature" name="genereateFunctionSignature" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>genereateFunctionSignature</param.appname>
     <param.authnamewatermark>Gii1</param.authnamewatermark>
     <param.email />
     <param.company />
-    <param.summary>Automatically generate the FunctionSignature.json file for a folder</param.summary>
-    <param.description>The function generateFunctionSignature(folderpath) can be used to automatically generate a FunctionSignature.json file by analyzing all avaible mfiles in the folder. The function uses the current folder when the path is not specified.</param.description>
+    <param.summary>Utility to generate a function signature file for a MATLAB project.</param.summary>
+    <param.description>generateFunctionSignature(path) generates the functionSignature.json file for the folder specified by the path and places into the resources folder. If left empty, the currently open folder is used. 
+
+A function signature file can be used to customize the code suggestion feature in MATLAB. Read more about it here: https://www.mathworks.com/help/matlab/matlab_prog/customize-code-suggestions-and-completions.html.</param.description>
     <param.screenshot />
     <param.version>1.0</param.version>
     <param.output>${PROJECT_ROOT}\genereateFunctionSignature.mltbx</param.output>
@@ -32,8 +34,8 @@ resources</param.exclude.filters>
     <param.required.addons />
     <param.matlab.project.id />
     <param.matlab.project.name />
-    <param.release.start>R2023a</param.release.start>
-    <param.release.end>latest</param.release.end>
+    <param.release.start />
+    <param.release.end />
     <param.release.current.only>false</param.release.current.only>
     <param.compatiblity.windows>true</param.compatiblity.windows>
     <param.compatiblity.macos>true</param.compatiblity.macos>
@@ -87,6 +89,7 @@ resources</param.exclude.filters>
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\+gfs</file>
       <file>${PROJECT_ROOT}\generateFunctionSignature.m</file>
+      <file>${PROJECT_ROOT}\README.md</file>
     </fileset.rootfiles>
     <fileset.depfun.included />
     <fileset.depfun.excluded />
