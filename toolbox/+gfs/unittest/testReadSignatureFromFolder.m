@@ -4,7 +4,8 @@ end
 
 % Input is path to a folder which contains a m-file
 function testFolderWithMFile(testCase)
-    signature = gfs.FunctionSignature("functionfile", inputs=["var1"]);
+    signature = gfs.FunctionSignature("functionfile");
+    signature.addInputs("var1");
     testCase.verifyEqual(gfs.readSignatureFromFolder("testdataReadSignatureFromFolder/folderWithMFile"), signature);
 end
 
