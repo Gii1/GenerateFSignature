@@ -1,0 +1,10 @@
+{
+    "function": 
+    {
+        "outputs": 
+        [
+            {"name":"var1", "type":"numeric"}, 
+            {"name":"var2", "type":"numeric"}
+        ]
+    }
+}

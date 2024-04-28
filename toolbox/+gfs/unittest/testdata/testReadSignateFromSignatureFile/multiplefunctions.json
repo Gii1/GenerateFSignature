@@ -1,0 +1,16 @@
+{
+    "function1":
+    {
+        "inputs":
+        [
+            {"name":"var1", "kind":"required", "type":"numeric"}
+        ]
+    },
+    "function2":
+    {
+        "inputs":
+        [
+            {"name":"var1", "kind":"required", "type":"numeric"}
+        ]
+    }
+}

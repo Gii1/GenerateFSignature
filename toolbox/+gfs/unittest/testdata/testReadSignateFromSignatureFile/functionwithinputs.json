@@ -1,0 +1,10 @@
+{
+    "function": 
+    {
+        "inputs": 
+        [
+            {"name":"var1", "kind":"required", "type":"numeric"}, 
+            {"name":"var2", "kind":"required", "type":"numeric"}
+        ]
+    }
+}
