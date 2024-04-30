@@ -4,7 +4,7 @@ end
 
 % test function signature with 2 input variables
 function testFunctionWithInputs(testCase)
-    inputfile = "testdata/testReadSignatureFromSignatureFile/functionwithinput.json";
+    inputfile = "testdata/testReadSignatureFromSignatureFile/functionwithinputs.json";
     expectedSignature = gfs.FunctionSignature("function");
     expectedSignature.addInputs(["var1", "var2"], kind="required", type="numeric");
     testCase.verifyEqual(gfs.readSignatureFromSignatureFile(inputfile), expectedSignature);
