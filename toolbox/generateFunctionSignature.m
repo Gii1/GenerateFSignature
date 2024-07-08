@@ -5,20 +5,20 @@ function generateFunctionSignature(path)
 
     import gfs.*;
 
-    sign = readSignatureFromFolder(path);
+    newsign = readSignatureFromFolder(path);
 
-    if isempty(sign)
+    if isempty(newsign)
         disp("This folder is empty");
         return
     end
 
-    mkdir(fullfile(path, "resources"));
-
     if isfile(fullfile(path, "resources", "functionSignatures.json"))
-        if ~strcmp(input("There is already a signature file in the folder. Generate the signature file anyway? (Enter yes):", "s"), "yes")
-            return
-        end
+        copyfile(fullfile(path, "resources", "functionSignatures.json"), fullfile(path, "resources", "functionSignatures_old.json"))
+        oldsign = readSignatureFromSignatureFile(fullfile(path, "resources", "functionSignatures.json"));
+        newsign = mergeSignatureArray(oldsign, newsign);
     end
 
-    gfs.writeSignatureToFile(sign, fullfile(path, "resources", "functionSignatures.json"));
+    mkdir(fullfile(path, "resources"));
+
+    gfs.writeSignatureToFile(newsign, fullfile(path, "resources", "functionSignatures.json"));
 end
