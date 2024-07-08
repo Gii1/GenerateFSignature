@@ -7,7 +7,11 @@ function sign = readSignatureFromFolder(foldername)
         try
             sign = [sign gfs.readSignatureFromFile(fullfile(foldername, filenames(i)))]; %#ok<AGROW>
         catch ME
-            isinvalid(i) = strcmp(ME.identifier, "gfs:invalidfile");
+            if strcmp(ME.identifier, "gfs:invalidfile")
+                isinvalid(i) = true;
+            else
+                ME.rethrow()
+            end
         end
     end
 
