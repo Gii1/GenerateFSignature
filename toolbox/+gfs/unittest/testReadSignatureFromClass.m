@@ -17,3 +17,11 @@ function testClassWithFunctions(testCase)
     signature(2).addInputs("var1");
     testCase.verifyEqual(gfs.readSignatureFromClass(classnode), signature);
 end
+
+% Input is class with a superclass
+function testClassWithSuperClass(testCase)
+    classnode = mtree("testdata/testReadSignatureFromClass/classwithsuperclass.m", "-file").root;
+    signature = gfs.FunctionSignature("classwithsuperclass.function1");
+    signature.addInputs("var1");
+    testCase.verifyEqual(gfs.readSignatureFromClass(classnode), signature);
+end

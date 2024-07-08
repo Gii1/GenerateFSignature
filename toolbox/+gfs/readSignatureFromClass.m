@@ -2,9 +2,15 @@ function sign = readSignatureFromClass(node)
     % convert a mtree class node into an array of FunctionSignature object
     
     sign = gfs.FunctionSignature.empty;
-    name = node.Cexpr.stringval;
 
-    % test for class with no functions
+    % get name of class
+    if strcmp(node.Cexpr.kind, "ID")
+        name = node.Cexpr.stringval;
+    else
+        name = node.Cexpr.Left.stringval;
+    end
+
+    % test if class has no functions
     if isempty(node.Body); return; end
 
     % Loop over all function nodes in class
