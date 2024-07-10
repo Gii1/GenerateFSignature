@@ -17,3 +17,11 @@ function testFunctionWithOutputs(testCase)
     jsontext = join(readlines("testdata/testEncodeSignatureToJson/functionwithoutputs.json"));
     verifyEqual(testCase, jsondecode(gfs.encodeSignatureToJson(signature)), jsondecode(jsontext));
 end
+
+% test class function
+function testFunctionWithDot(testCase)
+    signature = gfs.FunctionSignature("class.function");
+    signature.addInputs("var1");
+    jsontext = join(readlines("testdata/testEncodeSignatureToJson/functionwithdot.json"));
+    verifyEqual(testCase, jsondecode(gfs.encodeSignatureToJson(signature)), jsondecode(jsontext));
+end

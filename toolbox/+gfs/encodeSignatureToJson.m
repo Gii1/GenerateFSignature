@@ -21,8 +21,15 @@ function jsontext = encodeSignatureToJson(signature)
                 VariableNames=["name", "type"]);
         end
 
-        filestruct.(s.name) = functionstruct;
+        % escape function name
+        funcname = s.name;
+        funcname = replace(funcname, "_", "_u");
+        funcname = replace(funcname, ".", "_d");
+
+        filestruct.(funcname) = functionstruct;
     end
 
     jsontext = jsonencode(filestruct, PrettyPrint=true);
+    jsontext = replace(jsontext, "_d", ".");
+    jsontext = replace(jsontext, "_u", "_");
 end
