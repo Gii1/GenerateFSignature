@@ -5,9 +5,9 @@ function sign = readSignatureFromClass(node)
 
     % get name of class
     if strcmp(node.Cexpr.kind, "ID")
-        name = node.Cexpr.stringval;
+        name = string(node.Cexpr.stringval);
     else
-        name = node.Cexpr.Left.stringval;
+        name = string(node.Cexpr.Left.stringval);
     end
 
     % test if class has no functions
@@ -23,8 +23,18 @@ function sign = readSignatureFromClass(node)
             while ~isempty(functionnode)
                 % convert function node to FunctionSignature object
                 funcsign = gfs.readSignatureFromFunction(functionnode);
+
+                % check for constructor and set signature parameters
+                if strcmp(name, funcsign.name)
+                    funcsign.outputs.type = name;
+                else
+                    funcsign.inputs(1).kind = "required";
+                    funcsign.inputs(1).type = name;
+                end
+
                 % add class name to the function name
                 funcsign.name = strcat(name, ".", funcsign.name);
+                % set type and kind of the first argument
                 % add new signature to list
                 sign(end+1) = funcsign;
                 functionnode = functionnode.Next;
