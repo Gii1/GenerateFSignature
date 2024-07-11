@@ -6,6 +6,7 @@ function jsontext = encodeSignatureToJson(signature)
     % Loop through all signatures
     for i = 1:length(signature)
         s = signature(i);
+        functionstruct = struct();
 
         % Add input 
         if ~isempty(s.inputs)
