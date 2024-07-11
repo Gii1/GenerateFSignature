@@ -22,14 +22,11 @@ function jsontext = encodeSignatureToJson(signature)
         end
 
         % escape function name
-        funcname = s.name;
-        funcname = replace(funcname, "_", "_u");
-        funcname = replace(funcname, ".", "_d");
+        funcname = escapestring(s.name);
 
         filestruct.(funcname) = functionstruct;
     end
 
-    jsontext = jsonencode(filestruct, PrettyPrint=true);
-    jsontext = replace(jsontext, "_d", ".");
-    jsontext = replace(jsontext, "_u", "_");
+    % encode to json and unescape
+    jsontext = unescapestring(jsonencode(filestruct, PrettyPrint=true));
 end

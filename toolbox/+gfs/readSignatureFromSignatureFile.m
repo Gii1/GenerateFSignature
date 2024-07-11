@@ -2,9 +2,8 @@
     % readSignatureFromSignatureFile reads the content of a function
     % signature file and parses it to an array of FunctionSignature
     % objects. 
-
-    % read file text
-    filetext = fileread(filename);
+    % read file text and escape it
+    filetext = escapestring(fileread(filename));
     % parses content to structure object
     signaturestruct = jsondecode(filetext);
 
@@ -25,15 +24,18 @@
         end
 
         % create signature object
-        signature(k+1) = gfs.FunctionSignature(functionnames(i));
+        signature(k+1) = gfs.FunctionSignature(unescapestring(functionnames(i)));
 
         % check if input   
         if isfield(functionstruct, "inputs")
-            signature(i).addInputs(string({functionstruct.inputs.name}), kind=string({functionstruct.inputs.kind}), type=string({functionstruct.inputs.type}));
+            signature(i).addInputs(string({functionstruct.inputs.name}), ...
+                kind=string({functionstruct.inputs.kind}), ...
+                type=unescapestring(string({functionstruct.inputs.type})));
         end
 
         if isfield(functionstruct, "outputs")
-            signature(i).addOutputs(string({functionstruct.outputs.name}), type=string({functionstruct.outputs.type}));
+            signature(i).addOutputs(string({functionstruct.outputs.name}), ...
+                type=unescapestring(string({functionstruct.outputs.type})));
         end
 
         k = k + 1;

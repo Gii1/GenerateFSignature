@@ -10,6 +10,8 @@ function testFunctionWithInputs(testCase)
     testCase.verifyEqual(gfs.readSignatureFromSignatureFile(inputfile), expectedSignature);
 end
 
+
+% test function signature with 2 output variables
 function testFunctionWithOutputs(testCase)
     inputfile = "testdata/testReadSignatureFromSignatureFile/functionwithoutputs.json";
     expectedSignature = gfs.FunctionSignature("function");
@@ -17,11 +19,20 @@ function testFunctionWithOutputs(testCase)
     testCase.verifyEqual(gfs.readSignatureFromSignatureFile(inputfile), expectedSignature);
 end
 
+% test signature file with multiple function signatures
 function testMultipleFunction(testCase)
     inputfile = "testdata/testReadSignatureFromSignatureFile/multiplefunctions.json";
     expectedSignature(1) = gfs.FunctionSignature("function1");
     expectedSignature(1).addInputs("var1", kind="required", type="numeric");
     expectedSignature(2) = gfs.FunctionSignature("function2");
     expectedSignature(2).addInputs("var1", kind="required", type="numeric");
+    testCase.verifyEqual(gfs.readSignatureFromSignatureFile(inputfile), expectedSignature);
+end
+
+% test class function with dot in name (invalid field)
+function testClassFunction(testCase)
+    inputfile = "testdata/testReadSignatureFromSignatureFile/classfunction.json";
+    expectedSignature = gfs.FunctionSignature("class.function");
+    expectedSignature.addInputs("var1", kind="required");
     testCase.verifyEqual(gfs.readSignatureFromSignatureFile(inputfile), expectedSignature);
 end
