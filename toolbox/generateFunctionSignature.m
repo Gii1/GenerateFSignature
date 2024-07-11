@@ -18,7 +18,7 @@ function generateFunctionSignature(path)
         newsign = mergeSignatureArray(oldsign, newsign);
     end
 
-    mkdir(fullfile(path, "resources"));
+    [~, ~] = mkdir(fullfile(path, "resources"));
 
     gfs.writeSignatureToFile(newsign, fullfile(path, "resources", "functionSignatures.json"));
 end
