@@ -11,7 +11,7 @@ function merged = mergeSignatureArray(oldsignature, newsignature)
 
         % check if the element is also present in the old signature
         if ~isempty(oldsignidx)
-            merged(i) = gfs.mergeSignature(oldsignature(i), sign);
+            merged(i) = gfs.mergeSignature(oldsignature(oldsignidx), sign);
         else
             merged(i) = sign;
         end

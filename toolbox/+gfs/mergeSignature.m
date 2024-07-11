@@ -15,7 +15,7 @@ function mergedsignature = mergeSignature(oldsignature, newsignature)
     for i = 1:length(newsignature.inputs)
         % find corresponding item in old signature
         newinputvar = newsignature.inputs(i);
-        oldinputvar = oldsignature.inputs([oldsignature.inputs.name] == newinputvar.name);
+        oldinputvar = oldsignature.inputs(strcmp([oldsignature.inputs.name], newinputvar.name));
 
         name = newinputvar.name;
         kind = newinputvar.kind;
@@ -31,11 +31,11 @@ function mergedsignature = mergeSignature(oldsignature, newsignature)
         mergedsignature.addInputs(name, kind=kind, type=type);
     end
 
-    % same procedure for old signature
+    % same procedure for output
     for i = 1:length(newsignature.outputs)
         % find corresponding item in old signature
         newinputvar = newsignature.outputs(i);
-        oldinputvar = oldsignature.outputs([oldsignature.outputs.name] == newinputvar.name);
+        oldinputvar = oldsignature.outputs(strcmp([oldsignature.outputs.name], newinputvar.name));
 
         name = newinputvar.name;
         type = newinputvar.type;
