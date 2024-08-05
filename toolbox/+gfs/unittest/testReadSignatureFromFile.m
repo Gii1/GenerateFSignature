@@ -17,7 +17,7 @@ end
 % Input is path to a class file
 function testClassFile(testCase)
     signature = gfs.FunctionSignature("classfile.classfunction");
-    signature.addInputs("var1");
+    signature.addInputs("var1", type="classfile");
     testCase.verifyEqual(gfs.readSignatureFromFile("testdata/testReadSignatureFromFile/classfile.m"), signature);
 end
 
