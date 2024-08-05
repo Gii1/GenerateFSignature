@@ -3,7 +3,7 @@
     {
         "inputs":
         [
-            {"name":"var1", "kind":"required", "type":""}
+            {"name":"var1", "kind":"required", "type":"null"}
         ]
     }
 }

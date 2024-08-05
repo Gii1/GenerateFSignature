@@ -3,8 +3,8 @@
     {
         "outputs":
         [
-            {"name":"var1", "type":""},
-            {"name":"var2", "type":""}
+            {"name":"var1", "type":"null"},
+            {"name":"var2", "type":"null"}
         ]
     }
 }
