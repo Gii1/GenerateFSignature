@@ -34,5 +34,10 @@ classdef FunctionSignature < handle
 
             signature.outputs = [signature.outputs, struct(name=num2cell(name), type=num2cell(param.type))];
         end
+
+        function disp(signature)
+            disp("FunctionSignature with the following structure:")
+            disp(gfs.encodeSignatureToJson(signature))
+        end
     end
 end
