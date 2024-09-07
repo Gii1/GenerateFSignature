@@ -1,34 +1,21 @@
 function sign = readSignatureFromFunction(node)
     % convert a mtree function node into a FunctionSignature object
 
+    % get function name
     name = node.Fname.stringval;
-    inputs = string.empty;
-    outputs = string.empty;
 
-    inputnode = node.Ins;
-    while ~isempty(inputnode)
-        inputs(end+1) = string(inputnode.stringval);
-        inputnode = inputnode.Next;
-    end
-
-    outputnode = node.Outs;
-    while ~isempty(outputnode)
-        outputs(end+1) = string(outputnode.stringval);
-        outputnode = outputnode.Next;
-    end
+    % get argument names for input and output
+    inputs = string(node.Ins.List.stringvals);
+    outputs = string(node.Outs.List.stringvals);
 
     if isempty(inputs) && isempty(outputs)
+        % return empty object when the function has no input and output
+        % arguments
         sign = gfs.FunctionSignature.empty;
-        return;
-    end
-    
-    sign = gfs.FunctionSignature(name);
-
-    if ~isempty(inputs)
+    else
+        % else return parsed function signature
+        sign = gfs.FunctionSignature(name);
         sign.addInputs(inputs);
-    end
-
-    if ~isempty(outputs)
         sign.addOutputs(outputs);
     end
 end

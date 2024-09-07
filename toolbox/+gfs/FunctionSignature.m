@@ -1,8 +1,8 @@
 classdef FunctionSignature < handle
     properties
         name (1,1) string;
-        inputs struct = struct(name={}, kind={}, type={});
-        outputs struct = struct(name={}, type={});
+        inputs struct = struct(name=cell(1, 0), kind=cell(1, 0), type=cell(1, 0));
+        outputs struct = struct(name=cell(1, 0), type=cell(1, 0));
     end
 
     methods
