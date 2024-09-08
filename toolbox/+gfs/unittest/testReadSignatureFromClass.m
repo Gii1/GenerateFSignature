@@ -33,3 +33,13 @@ function testClassWithProperty(testCase)
     signature.addInputs("var1", type="classwithproperty");
     testCase.verifyEqual(gfs.readSignatureFromClass(classnode), signature);    
 end
+
+% Test class with multiple method blocks
+function testClassWithMultipleMethodBlocks(testCase)
+    classnode = mtree("testdata/testReadSignatureFromClass/classwithmultiplemethodblocks.m", "-file").root;
+    signature(1) = gfs.FunctionSignature("classwithmultiplemethodblocks.function1");
+    signature(1).addInputs("var1", type="classwithmultiplemethodblocks");
+    signature(2) = gfs.FunctionSignature("classwithmultiplemethodblocks.function2");
+    signature(2).addInputs("var1", type="classwithmultiplemethodblocks");
+    testCase.verifyEqual(gfs.readSignatureFromClass(classnode), signature);        
+end
