@@ -13,35 +13,26 @@ function sign = readSignatureFromClass(node)
     % test if class has no functions
     if isempty(node.Body); return; end
 
-    % Loop over content of node body
-    bodynode = node.Body;
-    while ~isempty(bodynode)
-        % Check if body node is a methods node
-        if strcmp(bodynode.kind, "METHODS")
-            % Loop over all function nodes in class
-            functionnode = bodynode.Body;
-            while ~isempty(functionnode)
-                % convert function node to FunctionSignature object
-                funcsign = gfs.readSignatureFromFunction(functionnode);
+    % Loop over all method blocks
+    methodnodes = node.Body.list.find("Kind", "METHODS");
+    for i = methodnodes.indices()
+        % Loop over all function nodes
+        functionnodes = methodnodes.select(i).Body.list;
+        for j = functionnodes.indices()
+            funcsign = gfs.readSignatureFromFunction(functionnodes.select(j));
 
-                % check for constructor and set signature parameters
-                if strcmp(name, funcsign.name)
-                    funcsign.outputs.type = name;
-                else
-                    funcsign.inputs(1).kind = "required";
-                    funcsign.inputs(1).type = name;
-                end
+            % set signature parameters
+            funcsign.name = strcat(name, ".", funcsign.name);
 
-                % add class name to the function name
-                funcsign.name = strcat(name, ".", funcsign.name);
-                % set type and kind of the first argument
-                % add new signature to list
-                sign(end+1) = funcsign;
-                functionnode = functionnode.Next;
+            if strcmp(name, funcsign.name)
+                funcsign.outputs.type = name;
+            else
+                funcsign.inputs(1).kind = "required";
+                funcsign.inputs(1).type = name;
             end
-
+            
+            % add signature to list
+            sign(end+1) = funcsign;
         end
-
-        bodynode = bodynode.Next;
     end
 end
