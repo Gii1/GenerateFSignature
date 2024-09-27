@@ -20,3 +20,12 @@ function testOnlyInNewSignature(testCase)
     outputsignature = gfs.FunctionSignature("function");
     testCase.verifyEqual(gfs.mergeSignatureArray(oldsignature, newsignature), outputsignature);
 end
+
+% function exist both in old and new signature
+% output should include the merged signature from new and old
+function testBothNewAndOldSignature(testCase)
+    oldsignature = gfs.FunctionSignature("function");
+    newsignature = gfs.FunctionSignature("function");
+    outputsignature = gfs.FunctionSignature("function");
+    testCase.verifyEqual(gfs.mergeSignatureArray(oldsignature, newsignature), outputsignature);
+end
