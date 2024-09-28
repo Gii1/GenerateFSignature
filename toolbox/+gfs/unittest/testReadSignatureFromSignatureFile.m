@@ -10,7 +10,6 @@ function testFunctionWithInputs(testCase)
     testCase.verifyEqual(gfs.readSignatureFromSignatureFile(inputfile), expectedSignature);
 end
 
-
 % test function signature with 2 output variables
 function testFunctionWithOutputs(testCase)
     inputfile = "testdata/testReadSignatureFromSignatureFile/functionwithoutputs.json";
@@ -35,4 +34,11 @@ function testClassFunction(testCase)
     expectedSignature = gfs.FunctionSignature("class.function");
     expectedSignature.addInputs("var1", kind="required");
     testCase.verifyEqual(gfs.readSignatureFromSignatureFile(inputfile), expectedSignature);
+end
+
+% test for empty function signature
+function testEmptyFunctionSignature(testCase)
+    inputfile = "testdata/testReadSignatureFromSignatureFile/emptyfunction.json";
+    actual = gfs.readSignatureFromSignatureFile(inputfile);
+    testCase.verifyEmpty(actual);
 end
