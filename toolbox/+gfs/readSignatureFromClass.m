@@ -22,15 +22,15 @@ function sign = readSignatureFromClass(node)
             funcsign = gfs.readSignatureFromFunction(functionnodes.select(j));
 
             % set signature parameters
-            funcsign.name = strcat(name, ".", funcsign.name);
-
             if strcmp(name, funcsign.name)
                 funcsign.outputs.type = name;
             else
                 funcsign.inputs(1).kind = "required";
                 funcsign.inputs(1).type = name;
             end
-            
+
+            funcsign.name = strcat(name, ".", funcsign.name);
+
             % add signature to list
             sign(end+1) = funcsign;
         end

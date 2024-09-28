@@ -43,3 +43,12 @@ function testClassWithMultipleMethodBlocks(testCase)
     signature(2).addInputs("var1", type="classwithmultiplemethodblocks");
     testCase.verifyEqual(gfs.readSignatureFromClass(classnode), signature);        
 end
+
+% Test class with constructor
+function testClassWithConstructor(testCase)
+    classnode = mtree("testdata/testReadSignatureFromClass/classwithconstructor.m", "-file").root;
+    expected = gfs.FunctionSignature("classwithconstructor.classwithconstructor");
+    expected.addOutputs("var1", type="classwithconstructor");
+    actual = gfs.readSignatureFromClass(classnode);
+    testCase.verifyEqual(actual, expected);
+end
