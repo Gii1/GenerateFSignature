@@ -4,24 +4,33 @@ end
 
 % test signature with 2 input variables
 function testFunctionWithInputs(testCase)
-    signature = gfs.FunctionSignature("functionwithinputs");
-    signature.addInputs(["var1", "var2"]);
-    jsontext = join(readlines("testdata/testEncodeSignatureToJson/functionwithinputs.json"));
-    verifyEqual(testCase, jsondecode(gfs.encodeSignatureToJson(signature)), jsondecode(jsontext));
+    expectedtext = join(readlines("testdata/testEncodeSignatureToJson/functionwithinputs.json"));
+    actualsignature = gfs.FunctionSignature("functionwithinputs");
+    actualsignature.addInputs(["var1", "var2"]);
+
+    expected = jsondecode(expectedtext);
+    actual = jsondecode(gfs.encodeSignatureToJson(actualsignature));
+    verifyEqual(testCase, actual, expected);
 end
 
 % test signature with 2 output variables
 function testFunctionWithOutputs(testCase)
-    signature = gfs.FunctionSignature("functionwithoutputs");
-    signature.addOutputs(["var1", "var2"]);
-    jsontext = join(readlines("testdata/testEncodeSignatureToJson/functionwithoutputs.json"));
-    verifyEqual(testCase, jsondecode(gfs.encodeSignatureToJson(signature)), jsondecode(jsontext));
+    expectedtext = join(readlines("testdata/testEncodeSignatureToJson/functionwithoutputs.json"));
+    actualsignature = gfs.FunctionSignature("functionwithoutputs");
+    actualsignature.addOutputs(["var1", "var2"]);
+
+    expected = jsondecode(expectedtext);
+    actual = jsondecode(gfs.encodeSignatureToJson(actualsignature));
+    verifyEqual(testCase, actual, expected);
 end
 
 % test class function
 function testFunctionWithDot(testCase)
-    signature = gfs.FunctionSignature("class.function");
-    signature.addInputs("var1");
-    jsontext = join(readlines("testdata/testEncodeSignatureToJson/functionwithdot.json"));
-    verifyEqual(testCase, jsondecode(gfs.encodeSignatureToJson(signature)), jsondecode(jsontext));
+    expectedtext = join(readlines("testdata/testEncodeSignatureToJson/functionwithdot.json"));
+    actualsignature = gfs.FunctionSignature("class.function");
+    actualsignature.addInputs("var1");
+    
+    expected = jsondecode(expectedtext);
+    actual = jsondecode(gfs.encodeSignatureToJson(actualsignature));
+    verifyEqual(testCase, actual, expected);
 end

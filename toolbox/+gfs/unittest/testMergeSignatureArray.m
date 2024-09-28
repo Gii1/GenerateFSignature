@@ -8,8 +8,10 @@ end
 function testOnlyInOldSignature(testCase)
     oldsignature = gfs.FunctionSignature("function");
     newsignature = gfs.FunctionSignature.empty;
-    outputsignature = gfs.FunctionSignature.empty;
-    testCase.verifyEqual(gfs.mergeSignatureArray(oldsignature, newsignature), outputsignature);
+
+    expected = gfs.FunctionSignature.empty;
+    actual = gfs.mergeSignatureArray(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
 end
 
 % function exist in new signature and not in old
@@ -17,8 +19,10 @@ end
 function testOnlyInNewSignature(testCase)
     oldsignature = gfs.FunctionSignature.empty;
     newsignature = gfs.FunctionSignature("function");
-    outputsignature = gfs.FunctionSignature("function");
-    testCase.verifyEqual(gfs.mergeSignatureArray(oldsignature, newsignature), outputsignature);
+
+    expected = gfs.FunctionSignature("function");
+    actual = gfs.mergeSignatureArray(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
 end
 
 % function exist both in old and new signature
@@ -26,6 +30,8 @@ end
 function testBothNewAndOldSignature(testCase)
     oldsignature = gfs.FunctionSignature("function");
     newsignature = gfs.FunctionSignature("function");
-    outputsignature = gfs.FunctionSignature("function");
-    testCase.verifyEqual(gfs.mergeSignatureArray(oldsignature, newsignature), outputsignature);
+    
+    expected = gfs.FunctionSignature("function");
+    actual = gfs.mergeSignatureArray(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
 end
