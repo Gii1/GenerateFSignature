@@ -36,8 +36,13 @@ classdef FunctionSignature < handle
         end
 
         function disp(signature)
-            disp("FunctionSignature with the following structure:")
-            disp(gfs.encodeSignatureToJson(signature))
+            try
+                output = gfs.encodeSignatureToJson(signature);
+                disp("FunctionSignature with the following structure:")
+                disp(output)
+            catch
+                details(signature)
+            end
         end
     end
 end
