@@ -57,3 +57,57 @@ function testOutputArgumentsDiffer(testCase)
     actual = gfs.mergeSignature(oldsignature, newsignature);
     testCase.verifyEqual(actual, expected);
 end
+
+% signature contains varargin
+% add all variables in old signature to the list instead of varargin
+function testFunctionContainsVarargin(testCase)
+    oldsignature = gfs.FunctionSignature("func");
+    oldsignature.addInputs(["var1", "var2"], type="null");
+    newsignature = gfs.FunctionSignature("func");
+    newsignature.addInputs("varargin");
+
+    expected = gfs.FunctionSignature("func");
+    expected.addInputs(["var1", "var2"], type="null");
+    actual = gfs.mergeSignature(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
+end
+
+% signature contains varargin, old signature contains not enough vars
+% add varargin normally to the var list
+function testFunctionContainsVarargin2(testCase)
+    oldsignature = gfs.FunctionSignature("func");
+    newsignature = gfs.FunctionSignature("func");
+    newsignature.addInputs("varargin");    
+
+    expected = gfs.FunctionSignature("func");
+    expected.addInputs("varargin");
+    actual = gfs.mergeSignature(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
+end
+
+% signature contains varargout
+% add all variables in the old signature to the list instead of varargout
+function testFunctionContainsVarargout(testCase)
+    oldsignature = gfs.FunctionSignature("func");
+    oldsignature.addOutputs(["var1", "var2"], type="null");
+    newsignature = gfs.FunctionSignature("func");
+    newsignature.addOutputs("varargout");
+
+    expected = gfs.FunctionSignature("func");
+    expected.addOutputs(["var1", "var2"], type="null");
+    actual = gfs.mergeSignature(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
+end
+
+% signature contains varargout, old signature contains not enough vars
+% add varargout normally to the var list
+function testFunctionContainsVarargout2(testCase)
+    oldsignature = gfs.FunctionSignature("func");
+    newsignature = gfs.FunctionSignature("func");
+    newsignature.addOutputs("varargout");    
+
+    expected = gfs.FunctionSignature("func");
+    expected.addOutputs("varargout");
+    actual = gfs.mergeSignature(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
+end
