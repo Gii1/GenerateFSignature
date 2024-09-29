@@ -57,3 +57,30 @@ function testOutputArgumentsDiffer(testCase)
     actual = gfs.mergeSignature(oldsignature, newsignature);
     testCase.verifyEqual(actual, expected);
 end
+
+% signature contains varargin
+% add all variables in output to the list instead of varargin
+function testFunctionContainsVarargin(testCase)
+    oldsignature = gfs.FunctionSignature("func");
+    oldsignature.addInputs(["var1", "var2"], type="null");
+    newsignature = gfs.FunctionSignature("func");
+    newsignature.addInputs("varargin");
+
+    expected = gfs.FunctionSignature("func");
+    expected.addInputs(["var1", "var2"], type="null");
+    actual = gfs.mergeSignature(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
+end
+
+% signature contains varargin, output contains not enough vars
+% add varargin normally to the var list
+function testFunctionContainsVaragin2(testCase)
+    oldsignature = gfs.FunctionSignature("func");
+    newsignature = gfs.FunctionSignature("func");
+    newsignature.addInputs("varargin");    
+
+    expected = gfs.FunctionSignature("func");
+    expected.addInputs("varargin");
+    actual = gfs.mergeSignature(oldsignature, newsignature);
+    testCase.verifyEqual(actual, expected);
+end
