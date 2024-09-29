@@ -36,7 +36,7 @@ function testClassFunction(testCase)
     inputfile = "testdata/testReadSignatureFromSignatureFile/classfunction.json";
     expected = gfs.FunctionSignature("class.function");
     expected.addInputs("var1", kind="required");
-    gfs.readSignatureFromSignatureFile(inputfile);
+    actual = gfs.readSignatureFromSignatureFile(inputfile);
     testCase.verifyEqual(actual, expected);
 end
 
