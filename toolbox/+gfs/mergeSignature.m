@@ -11,24 +11,33 @@ function mergedsignature = mergeSignature(oldsignature, newsignature)
     % create a new functionsignature object
     mergedsignature = gfs.FunctionSignature(oldsignature.name);
 
+    isused = false(length(oldsignature.inputs), 1);
+
     % iterate over every item in the input of the new signature
     for i = 1:length(newsignature.inputs)
-        % find corresponding item in old signature
         newinputvar = newsignature.inputs(i);
-        oldinputvar = oldsignature.inputs(strcmp([oldsignature.inputs.name], newinputvar.name));
 
-        name = newinputvar.name;
-        kind = newinputvar.kind;
-        type = newinputvar.type;
+        if strcmp(newinputvar.name, "varargin") && any(~isused)
+            mergedsignature.addInputStruct(oldsignature.inputs(~isused));
+        else
+            name = newinputvar.name;
+            kind = newinputvar.kind;
+            type = newinputvar.type;
 
-        % override parameters of new signature with old ones
-        if ~isempty(oldinputvar)
-            kind = oldinputvar.kind;
-            type = oldinputvar.type;
+            oldidx = find(strcmp([oldsignature.inputs.name], newinputvar.name), 1);
+            
+            % check if var exists in old signature
+            if ~isempty(oldidx)
+                % override parameters of new signature with old ones
+                isused(oldidx) = true;
+                oldinputvar = oldsignature.inputs(oldidx);
+                kind = oldinputvar.kind;
+                type = oldinputvar.type;
+            end
+
+            % add parameters as new input var 
+            mergedsignature.addInputs(name, kind=kind, type=type);
         end
-
-        % add parameters as new input var
-        mergedsignature.addInputs(name, kind=kind, type=type);
     end
 
     % same procedure for output

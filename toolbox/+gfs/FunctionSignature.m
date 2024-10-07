@@ -25,6 +25,15 @@ classdef FunctionSignature < handle
             signature.inputs = [signature.inputs, struct(name=num2cell(name), kind=num2cell(param.kind), type=num2cell(param.type))];
         end
 
+        function addInputStruct(signature, struc)
+            arguments
+                signature;
+                struc struct;
+            end
+
+            signature.inputs = [signature.inputs, struc];
+        end
+
         function addOutputs(signature, name, param)
             arguments
                 signature;
@@ -33,6 +42,15 @@ classdef FunctionSignature < handle
             end
 
             signature.outputs = [signature.outputs, struct(name=num2cell(name), type=num2cell(param.type))];
+        end
+
+        function addOutputStruct(signature, struc)
+            arguments
+                signature;
+                struc struct;
+            end
+            
+            signature.inputs = [signature.outputs, struc];
         end
 
         function disp(signature)
