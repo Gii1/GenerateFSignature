@@ -11,58 +11,49 @@ function mergedsignature = mergeSignature(oldsignature, newsignature)
     % create a new functionsignature object
     mergedsignature = gfs.FunctionSignature(oldsignature.name);
 
-    isused = false(length(oldsignature.inputs), 1);
-
-    % iterate over every item in the input of the new signature
-    for i = 1:length(newsignature.inputs)
-        newinputvar = newsignature.inputs(i);
-
-        if strcmp(newinputvar.name, "varargin") && any(~isused)
-            mergedsignature.addInputStruct(oldsignature.inputs(~isused));
-        else
-            name = newinputvar.name;
-            kind = newinputvar.kind;
-            type = newinputvar.type;
-
-            oldidx = find(strcmp([oldsignature.inputs.name], newinputvar.name), 1);
-            
-            % check if var exists in old signature
-            if ~isempty(oldidx)
-                % override parameters of new signature with old ones
-                isused(oldidx) = true;
-                oldinputvar = oldsignature.inputs(oldidx);
-                kind = oldinputvar.kind;
-                type = oldinputvar.type;
-            end
-
-            % add parameters as new input var 
-            mergedsignature.addInputs(name, kind=kind, type=type);
-        end
+    % merge input
+    if ~isempty(newsignature.inputs)
+        mergeInputStruct(oldsignature, newsignature, mergedsignature);
     end
 
-    isused = false(length(oldsignature.outputs), 1);
-
-    % same procedure for output
-    for i = 1:length(newsignature.outputs)
-        newinputvar = newsignature.outputs(i);
-
-        if strcmp(newinputvar.name, "varargout") && any(~isused)
-            mergedsignature.addOutputStruct(oldsignature.outputs(~isused));
-        else    
-            name = newinputvar.name;
-            type = newinputvar.type;
-
-            oldidx = find(strcmp([oldsignature.outputs.name], newinputvar.name), 1);
-    
-            % override parameters of new signature with old ones
-            if ~isempty(oldidx)
-                isused(oldidx) = true;
-                type = oldsignature.outputs(oldidx).type;
-            end
-    
-            % add parameters as new input var
-            mergedsignature.addOutputs(name, type=type);
-            
-        end
+    %merge output
+    if ~isempty(newsignature.outputs)
+        mergeOutputStruct(oldsignature, newsignature, mergedsignature);
     end
+end
+
+function mergeInputStruct(oldsignature, newsignature, mergedsignature)
+    % search for same variable name in new and old signature
+    [idxnew, idxold] = ismember([newsignature.inputs.name], string([oldsignature.inputs.name]));
+    % create struct for input vars
+    inputvars = newsignature.inputs;
+    inputvars(idxnew) = oldsignature.inputs(idxold(idxnew));
+
+    % check for varargin
+    remainingidx = ~ismember(1:length(oldsignature.inputs), idxold);
+    if strcmp(inputvars(end).name, "varargin") && any(remainingidx)
+        inputvars(end) = [];
+        inputvars = [inputvars, oldsignature.inputs(remainingidx)];
+    end
+
+    % add input vars to mergedsignature
+    mergedsignature.addInputStruct(inputvars);
+end
+
+function mergeOutputStruct(oldsignature, newsignature, mergedsignature)
+    % search for same variable name in new and old signature
+    [idxnew, idxold] = ismember([newsignature.outputs.name], string([oldsignature.outputs.name]));
+    % create struct for output vars
+    outputvars = newsignature.outputs;
+    outputvars(idxnew) = oldsignature.outputs(idxold(idxnew));
+
+    % check for varargout
+    remainingidx = ~ismember(1:length(oldsignature.outputs), idxold);
+    if strcmp(outputvars(end).name, "varargout") && any(remainingidx)
+        outputvars(end) = [];
+        outputvars = [outputvars, oldsignature.outputs(remainingidx)];
+    end
+
+    % add output vars to mergedsignature
+    mergedsignature.addOutputStruct(outputvars);
 end
