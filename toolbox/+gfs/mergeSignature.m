@@ -40,21 +40,29 @@ function mergedsignature = mergeSignature(oldsignature, newsignature)
         end
     end
 
+    isused = false(length(oldsignature.outputs), 1);
+
     % same procedure for output
     for i = 1:length(newsignature.outputs)
-        % find corresponding item in old signature
         newinputvar = newsignature.outputs(i);
-        oldinputvar = oldsignature.outputs(strcmp([oldsignature.outputs.name], newinputvar.name));
 
-        name = newinputvar.name;
-        type = newinputvar.type;
+        if strcmp(newinputvar.name, "varargout") && any(~isused)
+            mergedsignature.addOutputStruct(oldsignature.outputs(~isused));
+        else    
+            name = newinputvar.name;
+            type = newinputvar.type;
 
-        % override parameters of new signature with old ones
-        if ~isempty(oldinputvar)
-            type = oldinputvar.type;
+            oldidx = find(strcmp([oldsignature.outputs.name], newinputvar.name), 1);
+    
+            % override parameters of new signature with old ones
+            if ~isempty(oldidx)
+                isused(oldidx) = true;
+                type = oldsignature.outputs(oldidx).type;
+            end
+    
+            % add parameters as new input var
+            mergedsignature.addOutputs(name, type=type);
+            
         end
-
-        % add parameters as new input var
-        mergedsignature.addOutputs(name, type=type);
     end
 end

@@ -50,7 +50,7 @@ classdef FunctionSignature < handle
                 struc struct;
             end
             
-            signature.inputs = [signature.outputs, struc];
+            signature.outputs = [signature.outputs, struc];
         end
 
         function disp(signature)
