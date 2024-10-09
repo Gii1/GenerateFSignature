@@ -14,7 +14,7 @@ function sign = readSignatureFromClass(node)
     if isempty(node.Body); return; end
 
     % Loop over all method blocks
-    methodnodes = node.Body.list.find("Kind", "METHODS");
+    methodnodes = node.Body.list.mtfind("Kind", "METHODS");
     for i = methodnodes.indices()
         % Loop over all function nodes
         functionnodes = methodnodes.select(i).Body.list;
