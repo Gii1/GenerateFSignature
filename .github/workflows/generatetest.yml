@@ -1,0 +1,22 @@
+name: Generate Test
+on: [push]
+jobs:
+  my-job:
+    name: Run MATLAB Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        with:
+            cache: true
+      - name: Run tests
+        uses: matlab-actions/run-tests@v2
+        with:
+          source-folder: toolbox
+          test-results-junit: test-results/results.xml
+      - name: Convert result to CTRF
+        run: npx junit-to-ctrf test-results/results.xml -o test-results/results.json
+      - name: Publish test results
+        run: npx github-actions-ctrf test-results/results.json
